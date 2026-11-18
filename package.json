@@ -1,0 +1,14 @@
+{
+  "name": "safe-agentic-issue-triage",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Portfolio n8n workflow demonstrating bounded AI issue triage, deterministic guardrails and dry-run approval",
+  "type": "module",
+  "engines": {"node": ">=20"},
+  "scripts": {
+    "build": "node scripts/build-workflow.mjs",
+    "test": "node --test tests/*.test.mjs",
+    "lint:workflow": "node scripts/validate-workflow.mjs",
+    "check": "npm run build && npm run lint:workflow && npm test"
+  }
+}

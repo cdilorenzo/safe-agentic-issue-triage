@@ -1,0 +1,11 @@
+flowchart LR
+    A[Manual synthetic fixtures] --> B[Strict URL allowlist]
+    B --> C[Public GitHub GET or sample]
+    C --> D[AI Agent]
+    T[Read-only risk tool] -.-> D
+    D --> E[Independent schema and risk policy]
+    E -->|valid| F[Review report]
+    E -->|invalid| X[Fail closed]
+    F --> G[Optional dry-run approval]
+    G --> H[Assertions and audit]
+    X --> H

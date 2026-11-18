@@ -1,0 +1,10 @@
+node_modules/
+.env
+.env.*
+!.env.example
+.n8n/
+credentials*.json
+execution-data/
+results/private/
+.DS_Store
+*.log
