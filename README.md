@@ -2,10 +2,10 @@
 
 **Personal portfolio project by Claudio Di Lorenzo**
 
-**Deutsch:** [Schritt-fÃ¼r-Schritt: Import, Workflow testen und GitHub-VerÃ¶ffentlichung](docs/SETUP-UND-TEST-DE.md)  
+**Deutsch:** [Schritt-für-Schritt: Import, Workflow testen und GitHub-Veröffentlichung](docs/SETUP-UND-TEST-DE.md)  
 *An n8n reference workflow that separates AI-assisted issue investigation from deterministic quality and security controls.*
 
-[Workflow JSON](workflows/safe-agentic-issue-triage.json) Â· [Architecture](docs/architecture.md) Â· [Security model](SECURITY.md) Â· [Demo runbook](docs/demo-runbook.md) Â· [Quality and limitations](docs/quality-evidence.md)
+[Workflow JSON](workflows/safe-agentic-issue-triage.json) · [Architecture](docs/architecture.md) · [Security model](SECURITY.md) · [Demo runbook](docs/demo-runbook.md) · [Quality and limitations](docs/quality-evidence.md)
 
 ## Why this project?
 
@@ -43,7 +43,7 @@ flowchart LR
 | Area | Implementation |
 |---|---|
 | Agent | n8n AI Agent + Gemini 2.5 Flash-Lite (configure your own API credential) |
-| Agent's tool | `inspect_issue_risk` â€” pure JavaScript, no network, no credentials or side effects |
+| Agent's tool | `inspect_issue_risk` — pure JavaScript, no network, no credentials or side effects |
 | GitHub input | Synthetic demo fixtures or an optional, read-only public GitHub issue GET |
 | Safety | Strict URL allowlist, bounded input length, exact JSON schema, independent risk rules |
 | Approval | Review flag by default; optional authenticated Wait form with **no write action** |
@@ -55,7 +55,7 @@ flowchart LR
 
 1. In your n8n editor choose **Import from File** and select [`workflows/safe-agentic-issue-triage.json`](workflows/safe-agentic-issue-triage.json). The workflow is intentionally **inactive** and has no public trigger.
 2. Open **Google Gemini Chat Model**, configure your Gemini API credential, and select `models/gemini-2.5-flash-lite`. **Do not publish credentials in this repository.** Model/API usage may incur charges.
-3. Keep **Safety Config (no writes)** â†’ `interactive_approval_enabled = false` for the initial run. No GitHub credentials are required.
+3. Keep **Safety Config (no writes)** → `interactive_approval_enabled = false` for the initial run. No GitHub credentials are required.
 4. Click **Test workflow**. Synthetic issue URLs in `demo-org/dev-portal` are represented by bundled fixtures. Four cases use the model; an invalid URL is rejected without invoking the model.
 5. Open the **Final Audit Record** node and inspect each `test_case`, `risk_level`, `review_decision`, `test_pass`, `test_failures` and `report_markdown`. A generated report is **draft-only**.
 
@@ -116,4 +116,4 @@ The complete [submission checklist and short description](docs/application-notes
 
 Synthetic issues only are committed. No credentials, private company code, private datasets, real approval links, API keys, or execution traces are included. This is a personal project, independent of employer projects. See [SECURITY.md](SECURITY.md) and [design tradeoffs](docs/architecture.md).
 
-MIT License Â© 2026 Claudio Di Lorenzo.
+MIT License © 2026 Claudio Di Lorenzo.
