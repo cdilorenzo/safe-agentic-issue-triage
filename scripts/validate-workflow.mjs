@@ -28,7 +28,7 @@ for(const [from,channels] of Object.entries(wf.connections)) {
   assert.ok(names.has(from),`orphan source ${from}`);
   for(const outputs of Object.values(channels)) for(const arr of outputs) for(const edge of arr) assert.ok(names.has(edge.node),`orphan target ${edge.node}`);
 }
-const model=wf.nodes.find(n=>n.name==='OpenAI Chat Model');
+const model=wf.nodes.find(n=>n.name==='Google Gemini Chat Model');
 const tool=wf.nodes.find(n=>n.name==='inspect_issue_risk');
 const agent=wf.nodes.find(n=>n.name==='AI Triage Agent');
 assert.ok(model && tool && agent,'missing model/tool/agent');

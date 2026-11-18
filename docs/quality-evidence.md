@@ -26,12 +26,12 @@ The repository includes **16 deterministic unit tests** plus a static n8n JSON v
 
 The `tests/fixtures.json` cases are embedded in the generated workflow. n8n's `Assert Expectations` node evaluates the actual results at runtime. The offline tests run the **same JS source files** that are embedded into the workflow, so they validate real guardrail logic rather than a separate pseudocode implementation.
 
-## What is NOT yet tested
+## Live verification and remaining limitations
 
-- Successful import and execution on the user's particular n8n Cloud/self-hosted version.
-- Connection to the selected OpenAI/Gateway credential and model behavior.
+- **Verified:** imported and executed successfully in n8n Cloud on 2026-11-18 (execution #9).
+- **Verified:** Gemini 2.5 Flash-Lite completed the five-scenario live run.
 - Agent actually invoking its read-only tool as instructed (inspect the n8n trace).
-- Five end-to-end n8n execution results and screenshots (must be captured in n8n).
+- **Verified:** 5/5 live scenario assertions passed. Authentic audit screenshots still need to be added.
 - Optional authenticated Wait Form, approval, rejection and expiry scenarios in n8n.
 - Live public GitHub API success/failure on this n8n instance.
 - Long-term output consistency, accuracy, hallucination rate or operational latency/cost.
