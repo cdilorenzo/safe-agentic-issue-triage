@@ -9,3 +9,6 @@ results/private/
 .DS_Store
 *.log
 dist/
+
+__pycache__/
+*.py[cod]
