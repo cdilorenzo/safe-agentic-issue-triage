@@ -1,0 +1,38 @@
+name: Validate Agent Skill
+on:
+  push:
+    paths:
+      - 'skills/github-issue-risk-gate/**'
+      - 'tests/agent_skill/**'
+      - 'scripts/package-agent-skill.py'
+      - 'scripts/check-agent-skill.py'
+      - '.github/workflows/agent-skill-ci.yml'
+  pull_request:
+    paths:
+      - 'skills/github-issue-risk-gate/**'
+      - 'tests/agent_skill/**'
+      - 'scripts/package-agent-skill.py'
+      - 'scripts/check-agent-skill.py'
+      - '.github/workflows/agent-skill-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run isolated Python risk-gate tests
+        run: python -B -m unittest discover -s tests/agent_skill -p 'test_*.py' -v
+      - name: Package portable Agensi ZIP
+        run: python -B scripts/package-agent-skill.py
+      - name: Verify ZIP structure and size
+        run: python -B scripts/check-agent-skill.py
+      - name: Upload reviewable skill artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: agensi-github-issue-risk-gate
+          path: dist/skill.zip

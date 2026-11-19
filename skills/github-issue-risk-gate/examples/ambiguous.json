@@ -1,0 +1,18 @@
+{
+  "issue": {
+    "title": "Make dashboard faster",
+    "body": "Make it faster ASAP. We will figure it out later.",
+    "labels": ["improvement"]
+  },
+  "analysis": {
+    "summary": "Performance expectations need to be defined before planning changes.",
+    "proposed_change": "Measure baseline latency and identify bottlenecks before selecting implementation.",
+    "acceptance_criteria": [],
+    "tests": [
+      {"kind": "positive", "scenario": "Measure the baseline", "expected": "Latency is captured reproducibly"}
+    ],
+    "questions": ["Which page or endpoint?", "What are the current and target p95 response times?"],
+    "claimed_risk": "low",
+    "reasoning": "Insufficient details to choose a concrete implementation."
+  }
+}

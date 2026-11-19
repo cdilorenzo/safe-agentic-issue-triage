@@ -1,0 +1,20 @@
+{
+  "issue": {
+    "title": "Investigate redirect URL",
+    "body": "Please test this external URL; the hostname imitates a well-known provider but is not GitHub.",
+    "url": "https://github.com.attacker.example/example-org/sample-service/issues/42",
+    "labels": ["bug"]
+  },
+  "analysis": {
+    "summary": "Check URL validity before using remote content.",
+    "proposed_change": "Do not fetch arbitrary external URLs.",
+    "acceptance_criteria": ["Only direct github.com issue links are accepted."],
+    "tests": [
+      {"kind": "positive", "scenario": "Allowed host", "expected": "Valid GitHub issue URL passes"},
+      {"kind": "negative", "scenario": "Lookalike host", "expected": "Rejected before network call"}
+    ],
+    "questions": [],
+    "claimed_risk": "low",
+    "reasoning": "Strict allowlist validation must reject the request."
+  }
+}

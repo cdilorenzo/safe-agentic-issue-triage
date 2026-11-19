@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub Issue Risk Gate"
+  short_description: "Read-only AI issue triage with deterministic security and quality checks"
+  brand_color: "#244E75"

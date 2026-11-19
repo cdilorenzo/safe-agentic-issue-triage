@@ -1,0 +1,27 @@
+{
+  "issue": {
+    "title": "Docs: Clarify API rate-limit responses",
+    "body": "Update the REST API documentation to explain HTTP 429 responses and Retry-After header semantics. Include a short client-side retry example. Documentation only, no service changes.",
+    "number": 42,
+    "url": "https://github.com/example-org/sample-service/issues/42",
+    "labels": ["documentation"]
+  },
+  "analysis": {
+    "summary": "Clarify the expected behavior for API clients receiving rate-limit responses.",
+    "proposed_change": "Update the docs for HTTP 429 and Retry-After with a minimal example. Do not modify runtime behavior.",
+    "acceptance_criteria": [
+      "API docs explain the 429 response and Retry-After header.",
+      "An example client retries after the documented delay."
+    ],
+    "tests": [
+      {
+        "kind": "documentation",
+        "scenario": "Review published API examples against the existing contract",
+        "expected": "Examples show valid 429 response handling and match existing behavior"
+      }
+    ],
+    "questions": [],
+    "claimed_risk": "low",
+    "reasoning": "Documentation-only wording change; no application code changes requested."
+  }
+}

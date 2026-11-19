@@ -1,0 +1,19 @@
+{
+  "issue": {
+    "title": "Add retry policy for outbound webhooks",
+    "body": "Retry failed outbound webhook events with bounded backoff. Duplicate delivery must not create duplicate business actions. Describe timeout and dead-letter handling.",
+    "labels": ["backend"]
+  },
+  "analysis": {
+    "summary": "Make webhook dispatch retryable without duplicate side effects.",
+    "proposed_change": "Introduce bounded retries, idempotent delivery identification and failure reporting.",
+    "acceptance_criteria": ["Transient failures trigger bounded retry attempts.", "Duplicate deliveries do not duplicate business actions."],
+    "tests": [
+      {"kind": "positive", "scenario": "Transient HTTP failure", "expected": "Delivery succeeds after retry within policy limits"},
+      {"kind": "negative", "scenario": "Repeated duplicate event", "expected": "No duplicate business action is performed"}
+    ],
+    "questions": [],
+    "claimed_risk": "low",
+    "reasoning": "The model considered this routine but independent reliability controls may raise risk."
+  }
+}

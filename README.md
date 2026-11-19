@@ -7,6 +7,17 @@
 
 [Workflow JSON](workflows/safe-agentic-issue-triage.json) · [Architecture](docs/architecture.md) · [Security model](SECURITY.md) · [Demo runbook](docs/demo-runbook.md) · [Quality and limitations](docs/quality-evidence.md)
 
+## Standalone Agent Skill (Claude Code / Codex / Cursor)
+
+The same *AI proposes → deterministic code checks → human reviews* boundary is also available as **[GitHub Issue Risk Gate](skills/github-issue-risk-gate/)**, a portable coding-agent skill. Unlike the n8n workflow, this independent implementation runs a standard-library-only **Python risk gate** against an AI-drafted issue analysis. It does not require n8n, an API key, or paid tools for pasted issue text.
+
+- [Skill instructions](skills/github-issue-risk-gate/SKILL.md) · [Agent Skill documentation](docs/AGENT_SKILL.md) · [Agensi listing text](docs/AGENSI_LISTING.md)
+- [Risk model](skills/github-issue-risk-gate/references/risk-model.md) · [Input contract](skills/github-issue-risk-gate/references/input-contract.md) · [Synthetic examples](skills/github-issue-risk-gate/examples/)
+- Run locally: `python skills/github-issue-risk-gate/scripts/issue_risk_gate.py --input skills/github-issue-risk-gate/examples/auth-high-risk.json --format markdown`
+- Test: `python -m unittest discover -s tests/agent_skill -p 'test_*.py' -v`; package for Agensi: `python scripts/package-agent-skill.py` (creates `dist/skill.zip`).
+
+**Scope:** issue triage only; no automatic writes, commits, merges or deployments. The Python risk gate and the n8n JavaScript gate are separate implementations. A low risk classification is not a security certification or an authorization to implement. Live agent-marketplace execution requires separate verification.
+
 ## Why this project?
 
 An AI assistant can draft useful software-engineering plans, but it should **not** be able to authorize its own actions. Safe Agentic Issue Triage uses a real n8n AI Agent with a constrained, read-only risk-inspection tool. Independent code then checks the model's JSON output, classifies sensitive issues, and produces a human-review report.
